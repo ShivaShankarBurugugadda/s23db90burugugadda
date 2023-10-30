@@ -2,4 +2,19 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p I am the only person in the world with your exact set of experiences and thoughts, making you truly unique.
+  button(type="button", class="btn btn-secondary" onclick="goFaster()") Press Me
+  br
+  br
+  br
+  div#faster Increase the speed
+
+  script 
+    mph = 20;
+    change = 1;
+
+    function goFaster(){
+      mph += change;
+      change += 1;
+      document.getElementById("faster").innerHTML = "MPH" + mph + "change" + change ;}
+
