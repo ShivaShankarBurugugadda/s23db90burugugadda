@@ -2,3 +2,18 @@ extends layout
 
 block content
   h1= title
+  - let result =  [{ color: "Red", model: "BMW", year: 1916 },{ color: "Blue", model: "Jeep", year: 2000 },{ color: "Gree", model: "Chevrolet", year: 1911 }]
+   div.container-fluid
+    div.row
+     each vehicle,index in result
+      div.col-sm-2(onClick=`buy(${index})`) #{vehicle.color}
+      div.col-sm-2(onClick=`buy(${index})`) #{vehicle.model}
+      div.col-sm-2(onClick=`buy(${index})`) #{vehicle.year}
+      br
+      hr
+
+  script.
+       function buy(index)
+       {
+        alert(`You purchased Item ${index+1}`)
+       }
