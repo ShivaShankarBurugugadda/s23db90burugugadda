@@ -2,4 +2,8 @@ extends layout
 
 block content 
   h1= title
-
+  - let image_names = ["bently.jpeg","BMW1.jpg","bmw2.jpg","jeep2.jpeg","RR.jpeg"]
+   -for(let i=0; i<3; i++){
+    -let random= Math.floor(Math.random()*5)
+     img(src=`/images/${image_names[random]}` alt=`Image Name vehicle${random}` height="300px" width="300px")
+    -}
