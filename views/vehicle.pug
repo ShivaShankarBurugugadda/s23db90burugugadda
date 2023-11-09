@@ -2,10 +2,11 @@ extends layout
 
 block content
   h1= title
-  - let result =  [{ color: "Red", model: "BMW", year: 1916 },{ color: "Blue", model: "Jeep", year: 2000 },{ color: "Gree", model: "Chevrolet", year: 1911 }]
+  
+  - let items =  results
    div.container-fluid
     div.row
-     each vehicle,index in result
+     each vehicle,index in items
       div.col-sm-2(onClick=`buy(${index})`) #{vehicle.color}
       div.col-sm-2(onClick=`buy(${index})`) #{vehicle.model}
       div.col-sm-2(onClick=`buy(${index})`) #{vehicle.year}
