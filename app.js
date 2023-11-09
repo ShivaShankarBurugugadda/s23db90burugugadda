@@ -80,7 +80,7 @@ console.error(err)
 let instance2 = new
 vehicle({color: "Blue", model: "Jeep", year: 2000});
 instance2.save().then(doc=>{
-console.log("First object saved")}
+console.log("Second object saved")}
 ).catch(err=>{
 console.error(err)
 });
@@ -89,7 +89,7 @@ console.error(err)
 let instance3 = new
 vehicle({color: "Gree", model: "Chevrolet", year: 1911});
 instance3.save().then(doc=>{
-console.log("First object saved")}
+console.log("third object saved")}
 ).catch(err=>{
 console.error(err)
 });
