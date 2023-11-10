@@ -51,10 +51,7 @@ res.send(`{"error": ${err}}`);
 }
 };
 
-// for a specific vehicle.
-exports.vehicle_detail = function(req, res) {
-res.send('NOT IMPLEMENTED: vehicle detail: ' + req.params.id);
-};
+
 
 // Handle vehicle delete form on DELETE.
 exports.vehicle_delete = function(req, res) {
@@ -64,3 +61,42 @@ res.send('NOT IMPLEMENTED: vehicle delete DELETE ' + req.params.id);
 exports.vehicle_update_put = function(req, res) {
 res.send('NOT IMPLEMENTED: vehicle update PUT' + req.params.id);
 };
+
+
+
+
+
+exports.vehicle_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+    result = await vehicle.findById( req.params.id)
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
+   };
+
+
+
+
+
+   exports.vehicle_update_put = async function(req, res) {
+    console.log(`update on id ${req.params.id} with body
+   ${JSON.stringify(req.body)}`)
+    try {
+    let toUpdate = await vehicle.findById( req.params.id)
+    // Do updates of properties
+    if(req.body.color)
+    toUpdate.color = req.body.color;
+    if(req.body.model) toUpdate.model = req.body.model;
+    if(req.body.year) toUpdate.year = req.body.year;
+    let result = await toUpdate.save();
+    console.log("Sucess " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": ${err}: Update for id ${req.params.id}
+   failed`);
+    }
+   };
