@@ -1,0 +1,23 @@
+extends layout
+block content
+ h1= title
+ if(toShow==null)
+  h1 no instance to show
+ else 
+  - let vehicleid = toShow._id
+  - let color = toShow.color
+  - let model = toShow.model
+  - let year = toShow.year
+  div
+  div.row
+  div(class='vehicleAttr mr-3') vehicle ID is:
+  div #{vehicleid}
+  div.row
+  div(class='vehicleAttr mr-3') vehicle color is:
+  div #{color}
+  div.row
+  div(class='vehicleAttr mr-3') vehicle model is:
+  div #{model}
+  div.row
+  div(class='vehicleAttr mr-3') vehicle year is:
+  div #{year}

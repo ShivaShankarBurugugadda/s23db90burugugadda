@@ -6,3 +6,7 @@ body {
 a {
   color: #00B7FF;
 }
+.vehicleAttr {
+  background-color: rgb(227, 255, 127);
+  width: 120px;
+ }

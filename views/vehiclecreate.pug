@@ -1,0 +1,28 @@
+extends layout
+block content
+ h1= title
+ form(id='vehicleForm', action="/resource/vehicle", method="POST")
+  div.form-group
+   label.vehicleAttr(for='color') vehicle Color
+   input#color(type='text', name='color')
+  div.form-group
+   label.vehicleAttr(for='model') vehicle Breed
+   input#model(type='text', name='model')
+  div.form-group
+   label.vehicleAttr(for='year') vehicle Cost 
+   input#year(type='number', name='year')
+  input(type="submit")
+ script.
+  document.forms['vehicleForm'].addEventListener('submit', (event) => {
+    event.preventDefault();
+    fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target)) 
+    }).then((resp) => {
+        return resp.text();
+    }).then((body) => {
+        alert("Save succeded")
+    }).catch((error) => {
+        alert("Save failed " + error )
+    });
+   });

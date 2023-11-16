@@ -1,0 +1,49 @@
+extends layout
+
+block content
+  h1= title
+
+  if(toShow == null)
+    h2 No instance to delete
+  else
+    - let vehicleid = toShow._id
+    - let color = toShow.color
+    - let model = toShow.model
+    - let year = toShow.year
+    - let actionid = "/resource/vehicle/" + vehicleid
+    script let actionid = "#{actionid}"
+    div
+     div.row 
+      div(class='vehicleAttr mr-3') vehicle ID is:
+      div #{vehicleid}
+     div.row
+      div(class='vehicleAttr mr-3') vehicle color is:
+      div #{color}
+     div.row
+      div(class='vehicleAttr mr-3') vehicle breed is:
+      div #{model}
+     div.row
+      div(class='vehicleAttr mr-3') vehicle Price is:
+      div #{year}
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+  script.
+   function cancel() {
+    window.location.href='/vehicle'
+    }
+  script.
+    function deleteOnid() {
+     console.log("starting delete")
+     fetch(actionid, {
+      method: 'DELETE'
+     }).then((resp) => {
+        return resp.json();
+     }).then((body) => {
+        alert("Delete succeded")
+        window.location.href='/vehicle'
+     }).catch((error) => {
+        alert("Delete failed " + error )
+     });
+    }
+
+    
