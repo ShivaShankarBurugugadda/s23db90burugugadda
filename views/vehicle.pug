@@ -3,12 +3,18 @@ extends layout
 block content
   h1= title
   - let items = results;
+  - let addInstance = `createInstance(\"/vehicle/create\")`
+  button.btn( class="btn-primary ml-1", onclick= addInstance) create
   div(class="container-fluid")
    div(class="row m-1")
     each item in items
      - let destination = `dispatch(\"/vehicle/update?id=${item._id}\")`
+     - let detailInstance = `infoInstance(\"/vehicle/detail?id=${item._id}\")`
+     - let deleteInstance = `delIns(\"/vehicle/delete?id=${item._id}\")`
      div(class="row-sm-2", class="m-1") Item #{item.color}(#{item.model}) is #{item.year}
       button.btn( class="btn-primary ml-1", onclick= destination) Update
+      button.btn( class="btn-primary ml-1", onclick= detailInstance) Detail
+      button.btn( class="btn-primary ml-1", onclick= deleteInstance) Delete
     div.container-fluid 
      div.row
       each vehicle,index in items 
@@ -25,6 +31,21 @@ block content
        }
   script.
        function dispatch(path)
+       {
+         window.location.href=path
+       }
+  script.
+       function createInstance(path)
+       {
+         window.location.href=path
+       }
+  script.
+       function infoInstance(path)
+       {
+         window.location.href=path
+       }
+  script.
+       function delIns(path)
        {
          window.location.href=path
        }
